@@ -7,6 +7,7 @@ win.title("DBMS ASSIGNMENT UE19CS301")
 lbl=ttk.Label(win,text="Enter your query:").grid(column=0,row=0)
 def click():
     query=name.get()
+    print("\n",query,"\n")
     conn=psycopg2.connect(database="courier_db", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
     cursor = conn.cursor()
     cursor.execute(query)
