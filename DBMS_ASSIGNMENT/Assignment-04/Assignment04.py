@@ -21,7 +21,7 @@ class Application(tk.Frame):
         self.root.title("Courier Management System")
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
-        self.root.config(background="cyan")
+        self.root.config(background="teal")
         self.name=StringVar()
         self.x=StringVar()
        
