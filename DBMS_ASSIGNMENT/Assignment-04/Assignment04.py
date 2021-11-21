@@ -21,7 +21,7 @@ class Application(tk.Frame):
         self.root.title("Courier Management System")
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
-        self.root.config(background="teal")
+        self.root.config(background="cyan")
         self.name=StringVar()
         self.x=StringVar()
        
@@ -73,7 +73,7 @@ class Application(tk.Frame):
 
     def insert(self):
             query=name.get()
-            conn=psycopg2.connect(database="courier_db", user='postgres', password='rajeshwari', host='127.0.0.1', port= '5432')
+            conn=psycopg2.connect(database="courier_db", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
             cur=conn.cursor()
             cur.execute(query)
             conn.commit()
@@ -83,7 +83,7 @@ class Application(tk.Frame):
 
     def update(self):
             query=name.get()
-            conn=psycopg2.connect(database="courier_db", user='postgres', password='rajeshwari', host='127.0.0.1', port= '5432')
+            conn=psycopg2.connect(database="courier_db", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
             cur=conn.cursor()
             cur.execute(query)
             conn.commit()
@@ -91,7 +91,7 @@ class Application(tk.Frame):
             pass
     def delete(self):
             query=name.get()
-            conn=psycopg2.connect(database="courier_db", user='postgres', password='rajeshwari', host='127.0.0.1', port= '5432')
+            conn=psycopg2.connect(database="courier_db", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
             cur=conn.cursor()
             cur.execute(query)
             conn.commit()
@@ -103,8 +103,10 @@ class Application(tk.Frame):
             self.clearTreeview()
             query=self.name.get()
             self.x.set(query)
-            conn=psycopg2.connect(database="courier_db", user='postgres', password='rajeshwari', host='127.0.0.1', port= '5432')
-            my_table = pd.read_sql(query, conn) 
+            
+            conn=psycopg2.connect(database="courier_db", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
+            my_table = pd.read_sql(query, conn)
+            
             pd.set_option('display.max_rows', 500)
             pd.set_option('display.max_columns', 500)
             pd.set_option('display.width', 1000)
@@ -114,7 +116,7 @@ class Application(tk.Frame):
             
             for i in headings :
                 self.tree.heading(f'#{i}', text = my_table.columns[i])
-            for row in range(1,rows) :
+            for row in range(0,rows) :
                 record = []
                 for col in range(0,cols) :
                     record.append(my_table.iloc[row,col])
